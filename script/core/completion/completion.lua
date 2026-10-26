@@ -620,6 +620,13 @@ local function checkFieldOfRefs(refs, state, word, startPos, position, parent, o
             count = count + 1
             goto CONTINUE
         end
+        if  last
+        and vm.getFieldAccess(last) == 'write'
+        and src.type == 'doc.field'
+        and vm.getFieldAccess(src) ~= 'write' then
+            fields[name] = src
+            goto CONTINUE
+        end
         if vm.getDeprecated(src) then
             goto CONTINUE
         end

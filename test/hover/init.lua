@@ -2553,3 +2553,33 @@ global <?*?>
 (global) any
 ]]
 config.set(nil, 'Lua.runtime.version', nil)
+
+TEST [[
+---@class Force
+
+---@class Entity
+---@field (read) force Force
+---@field (write) force Force|string
+
+---@type Entity
+local entity
+local f = entity.<?force?>
+]]
+[[
+(field) Entity.force: Force
+]]
+
+TEST [[
+---@class Force
+
+---@class Entity
+---@field (read) force Force
+---@field (write) force Force|string
+
+---@type Entity
+local entity
+entity.<?force?> = 'player'
+]]
+[[
+(field) Entity.force: string|Force
+]]

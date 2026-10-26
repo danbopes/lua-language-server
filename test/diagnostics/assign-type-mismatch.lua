@@ -479,3 +479,78 @@ t.a = 1
 t.a = 2
 return t
 ]]
+
+TEST [[
+---@class Force
+
+---@class Entity
+---@field (read) force Force
+---@field (write) force Force|string
+
+---@type Entity
+local entity
+entity.force = 'player'
+]]
+
+TEST [[
+---@class Force
+
+---@class Entity
+---@field (read) force Force
+---@field (write) force Force|string
+
+---@type Entity
+local entity
+<!entity.force!> = true
+]]
+
+TEST [[
+---@class Force
+
+---@class Entity
+---@field (write) force Force|string
+---@field (read) force Force
+
+---@type Entity
+local entity = { force = 'player' }
+]]
+
+TEST [[
+---@class Force
+
+---@class Entity
+---@field (read) force Force
+---@field (write) force Force|string
+
+---@type Entity
+local entity = { <!force!> = true }
+]]
+
+TEST [[
+---@class Counter
+---@field (read) n integer
+---@field (write) n number
+
+---@type Counter
+local c
+c.n = c.n + 0.5
+]]
+
+TEST [[
+---@class Entity
+---@field (read) name string
+
+---@type Entity
+local entity
+<!entity.name!> = 1
+]]
+
+TEST [[
+---@class Entity
+---@field (write) name string
+
+---@type Entity
+local entity
+entity.name = 'x'
+<!entity.name!> = 1
+]]

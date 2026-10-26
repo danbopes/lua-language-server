@@ -2,6 +2,7 @@
 
 ## Unreleased
 <!-- Add all new changes here. They will be moved under a version at release -->
+* `NEW` `---@field (read)` / `---@field (write)` declare different types for reading and writing a field; plain `---@field` still covers both [#1298](https://github.com/LuaLS/lua-language-server/issues/1298)
 
 ## 3.19.2
 `2026-10-13`
